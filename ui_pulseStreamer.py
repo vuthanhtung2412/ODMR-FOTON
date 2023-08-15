@@ -21,10 +21,13 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
     QSpinBox, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+        
+    def setupUi(self, MainWindow : QMainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(823, 742)
+        
+        # Set central widget
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
@@ -46,7 +49,7 @@ class Ui_MainWindow(object):
 
         self.PlayPause.addWidget(self.cancelButton)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.PlayPause.addItem(self.horizontalSpacer)
 
@@ -60,7 +63,7 @@ class Ui_MainWindow(object):
 
         self.DTitle.addWidget(self.label)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.DTitle.addItem(self.horizontalSpacer_2)
 
@@ -74,7 +77,7 @@ class Ui_MainWindow(object):
 
         self.DArea = QScrollArea(self.centralwidget)
         self.DArea.setObjectName(u"DArea")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(7)
         sizePolicy.setHeightForWidth(self.DArea.sizePolicy().hasHeightForWidth())
@@ -92,10 +95,10 @@ class Ui_MainWindow(object):
         self.DId = QVBoxLayout()
         self.DId.setSpacing(0)
         self.DId.setObjectName(u"DId")
-        self.DId.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.DId.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.label_4 = QLabel(self.DCol)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(1)
         sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
@@ -169,167 +172,8 @@ class Ui_MainWindow(object):
         self.DId.addWidget(self.label_3)
 
         self.DHL.addLayout(self.DId)
-
-        self.verticalLayout_2 = QVBoxLayout()
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.frame = QFrame(self.DCol)
-        self.frame.setObjectName(u"frame")
-        sizePolicy1.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        # print(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy1)
-        self.frame.setMinimumSize(QSize(0, 0))
-        self.frame.setMaximumSize(QSize(16777215, 16777215))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame)
-        self.horizontalLayout_3.setSpacing(0)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.duration = QSpinBox(self.frame)
-        self.duration.setObjectName(u"duration")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy2.setHorizontalStretch(1)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.duration.sizePolicy().hasHeightForWidth())
-        # print(self.duration.sizePolicy().hasHeightForWidth())
-        self.duration.setSizePolicy(sizePolicy2)
-
-        self.horizontalLayout_3.addWidget(self.duration)
-
-        self.comboBox = QComboBox(self.frame)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setMaximumSize(QSize(55, 16777215))
-
-        self.horizontalLayout_3.addWidget(self.comboBox)
-
-
-        self.verticalLayout_2.addWidget(self.frame)
-
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(1)
         
-        ### original code ###
-        # self.pushButton_2 = QPushButton(self.DCol)
-        # self.pushButton_2.setObjectName(u"pushButton_2")
-        # sizePolicy3.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        # self.pushButton_2.setSizePolicy(sizePolicy3)
-        # self.pushButton_2.setMinimumSize(QSize(0, 0))
-        # self.pushButton_2.setMaximumSize(QSize(16777215, 16777215))
-        # self.pushButton_2.setLayoutDirection(Qt.LeftToRight)
-        # self.pushButton_2.setAutoFillBackground(False)
-        # self.pushButton_2.setCheckable(True)
-
-        ### Customized GUI ###
-        self.pushButton_2 = BinButton(self.DCol)
-        
-        self.verticalLayout_2.addWidget(self.pushButton_2)
-
-        self.pushButton_3 = QPushButton(self.DCol)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        sizePolicy3.setHeightForWidth(self.pushButton_3.sizePolicy().hasHeightForWidth())
-        self.pushButton_3.setSizePolicy(sizePolicy3)
-        self.pushButton_3.setMinimumSize(QSize(0, 0))
-        self.pushButton_3.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton_3.setLayoutDirection(Qt.LeftToRight)
-        self.pushButton_3.setAutoFillBackground(False)
-        self.pushButton_3.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.pushButton_3)
-
-        self.pushButton_4 = QPushButton(self.DCol)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        sizePolicy3.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
-        self.pushButton_4.setSizePolicy(sizePolicy3)
-        self.pushButton_4.setMinimumSize(QSize(0, 0))
-        self.pushButton_4.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton_4.setLayoutDirection(Qt.LeftToRight)
-        self.pushButton_4.setAutoFillBackground(False)
-        self.pushButton_4.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.pushButton_4)
-
-        self.pushButton_5 = QPushButton(self.DCol)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        sizePolicy3.setHeightForWidth(self.pushButton_5.sizePolicy().hasHeightForWidth())
-        self.pushButton_5.setSizePolicy(sizePolicy3)
-        self.pushButton_5.setMinimumSize(QSize(0, 0))
-        self.pushButton_5.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton_5.setLayoutDirection(Qt.LeftToRight)
-        self.pushButton_5.setAutoFillBackground(False)
-        self.pushButton_5.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.pushButton_5)
-
-        self.pushButton_6 = QPushButton(self.DCol)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        sizePolicy3.setHeightForWidth(self.pushButton_6.sizePolicy().hasHeightForWidth())
-        self.pushButton_6.setSizePolicy(sizePolicy3)
-        self.pushButton_6.setMinimumSize(QSize(0, 0))
-        self.pushButton_6.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton_6.setLayoutDirection(Qt.LeftToRight)
-        self.pushButton_6.setAutoFillBackground(False)
-        self.pushButton_6.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.pushButton_6)
-
-        self.pushButton_7 = QPushButton(self.DCol)
-        self.pushButton_7.setObjectName(u"pushButton_7")
-        sizePolicy3.setHeightForWidth(self.pushButton_7.sizePolicy().hasHeightForWidth())
-        self.pushButton_7.setSizePolicy(sizePolicy3)
-        self.pushButton_7.setMinimumSize(QSize(0, 0))
-        self.pushButton_7.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton_7.setLayoutDirection(Qt.LeftToRight)
-        self.pushButton_7.setAutoFillBackground(False)
-        self.pushButton_7.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.pushButton_7)
-
-        self.pushButton_9 = QPushButton(self.DCol)
-        self.pushButton_9.setObjectName(u"pushButton_9")
-        sizePolicy3.setHeightForWidth(self.pushButton_9.sizePolicy().hasHeightForWidth())
-        self.pushButton_9.setSizePolicy(sizePolicy3)
-        self.pushButton_9.setMinimumSize(QSize(0, 0))
-        self.pushButton_9.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton_9.setLayoutDirection(Qt.LeftToRight)
-        self.pushButton_9.setAutoFillBackground(False)
-        self.pushButton_9.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.pushButton_9)
-
-        self.pushButton_8 = QPushButton(self.DCol)
-        self.pushButton_8.setObjectName(u"pushButton_8")
-        sizePolicy3.setHeightForWidth(self.pushButton_8.sizePolicy().hasHeightForWidth())
-        self.pushButton_8.setSizePolicy(sizePolicy3)
-        self.pushButton_8.setMinimumSize(QSize(0, 0))
-        self.pushButton_8.setMaximumSize(QSize(16777215, 16777215))
-        self.pushButton_8.setLayoutDirection(Qt.LeftToRight)
-        self.pushButton_8.setAutoFillBackground(False)
-        self.pushButton_8.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.pushButton_8)
-
-        self.deleteButton = QPushButton(self.DCol)
-        self.deleteButton.setObjectName(u"deleteButton")
-        sizePolicy3.setHeightForWidth(self.deleteButton.sizePolicy().hasHeightForWidth())
-        self.deleteButton.setSizePolicy(sizePolicy3)
-        self.deleteButton.setMinimumSize(QSize(0, 0))
-        self.deleteButton.setMaximumSize(QSize(16777215, 16777215))
-        self.deleteButton.setLayoutDirection(Qt.LeftToRight)
-        self.deleteButton.setAutoFillBackground(False)
-        self.deleteButton.setCheckable(False)
-
-        self.verticalLayout_2.addWidget(self.deleteButton)
-
-        self.DHL.addLayout(self.verticalLayout_2)
-        self.DHL.addLayout(DSequence())
-        
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.DHL.addItem(self.horizontalSpacer_4)
 
@@ -344,7 +188,7 @@ class Ui_MainWindow(object):
 
         self.ATitle.addWidget(self.aLabel)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.ATitle.addItem(self.horizontalSpacer_3)
 
@@ -357,7 +201,7 @@ class Ui_MainWindow(object):
 
         self.AArea = QScrollArea(self.centralwidget)
         self.AArea.setObjectName(u"AArea")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(2)
         sizePolicy4.setHeightForWidth(self.AArea.sizePolicy().hasHeightForWidth())
@@ -374,7 +218,7 @@ class Ui_MainWindow(object):
         self.AId = QVBoxLayout()
         self.AId.setSpacing(0)
         self.AId.setObjectName(u"AId")
-        self.AId.setSizeConstraint(QLayout.SetMinimumSize)
+        self.AId.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.AId.setContentsMargins(0, -1, 0, 0)
         self.label_13 = QLabel(self.ACol)
         self.label_13.setObjectName(u"label_13")
@@ -409,7 +253,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addLayout(self.AId)
 
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer_5)
 
@@ -429,9 +273,7 @@ class Ui_MainWindow(object):
         self.logButton = QPushButton("Log")
         self.verticalLayout.addWidget(self.logButton)
         
-        ### Call others functions ###
         self.retranslateUi(MainWindow)
-        self.connectSignalsAndSlots()
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -452,20 +294,6 @@ class Ui_MainWindow(object):
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Channel 6", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Channel 7", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"---", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"micro", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"ns", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"ms", None))
-        self.comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"s", None))
-
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.aLabel.setText(QCoreApplication.translate("MainWindow", u"Analog Channels", None))
         self.aAdd.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.label_13.setText(QCoreApplication.translate("MainWindow", u"---", None))
@@ -486,7 +314,8 @@ class Ui_MainWindow(object):
     
     def addDSequence(self):
         print("addDSequence called")
-        self.DHL.insertLayout(self.DHL.count()-1,DSequence())
+        newSeq = DSequence()
+        self.DHL.insertLayout(self.DHL.count()-1,newSeq)
         pass
     
     def addASequence(self):
@@ -496,14 +325,14 @@ class Ui_MainWindow(object):
 class BinButton(QPushButton):
     def __init__(self,parent=None):
         super(BinButton, self).__init__(parent)
-        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
         self.setSizePolicy(sizePolicy)
         self.setMinimumSize(QSize(0, 0))
         self.setMaximumSize(QSize(16777215, 16777215))
-        self.setLayoutDirection(Qt.LeftToRight)
+        self.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.setAutoFillBackground(False)
         self.setCheckable(True)
         self.setText("0")
@@ -526,7 +355,7 @@ class DSequence(QVBoxLayout):
         self.frame = QFrame()
         
         # create sizePolicy
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
         sizePolicy.setHeightForWidth(False)
@@ -535,51 +364,49 @@ class DSequence(QVBoxLayout):
         self.frame.setSizePolicy(sizePolicy)
         self.frame.setMinimumSize(QSize(0, 0))
         self.frame.setMaximumSize(QSize(16777215, 16777215))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
         
         # Horizontal layout
         self.DHL = QHBoxLayout(self.frame)
         self.DHL.setSpacing(0)
-        self.DHL.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.DHL.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
         self.DHL.setContentsMargins(0, 0, 0, 0)
         
         # duration spinbox
         self.duration = QSpinBox(self.frame)
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(1)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(False)
         self.duration.setSizePolicy(sizePolicy2)
 
         self.DHL.addWidget(self.duration)
-
+        
+        # Scale combo box
         self.comboBox = QComboBox(self.frame)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"micro", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"ns", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"ms", None))
-        self.comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"s", None))
+        self.comboBox.addItem("ns")
+        self.comboBox.addItem("micro")
+        self.comboBox.addItem("ms")
+        self.comboBox.addItem("s")
         self.comboBox.setMaximumSize(QSize(55, 16777215))
 
         self.DHL.addWidget(self.comboBox)
 
         self.addWidget(self.frame)
         
+        # add buttons
         for b in self.binButtons:
             self.addWidget(b)
         
         self.deleteButton = QPushButton()
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(1)
         self.deleteButton.setSizePolicy(sizePolicy3)
         self.deleteButton.setMinimumSize(QSize(0, 0))
         self.deleteButton.setMaximumSize(QSize(16777215, 16777215))
-        self.deleteButton.setLayoutDirection(Qt.LeftToRight)
+        self.deleteButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.deleteButton.setAutoFillBackground(False)
         self.deleteButton.setCheckable(False)
         self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
