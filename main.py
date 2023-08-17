@@ -13,6 +13,11 @@ class MainWindow(QMainWindow):
         # connect button signals to slots
         self.ui.cancelButton.clicked.connect(self.cancel)
         self.ui.playButton.clicked.connect(self.play)
+        self.ui.searchButton.clicked.connect(self.search)
+        
+    def search(self):
+        print("search for pulse streamer device")
+        pass
         
     # Slots
     def play(self):

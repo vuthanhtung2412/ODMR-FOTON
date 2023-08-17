@@ -32,30 +32,50 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        
+        # Search for device horizontal layout
+        self.searchBar = QHBoxLayout()
+        self.searchBar.setObjectName(u"searchBar")
+        # search Button
+        self.searchButton = QPushButton(self.centralwidget)
+        self.searchButton.setObjectName(u"searchButton")
+        self.searchButton.setText("Search")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        self.searchButton.setSizePolicy(sizePolicy)
+        self.searchBar.addWidget(self.searchButton)
+        # IP label
+        self.IPLabel = QLabel(self.centralwidget)
+        self.IPLabel.setObjectName(u"IP_label")
+        self.IPLabel.setText("NO DEVICE DETECTED")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        self.IPLabel.setSizePolicy(sizePolicy)
+        self.searchBar.addWidget(self.IPLabel)
+        
+        self.verticalLayout.addLayout(self.searchBar)
+        
+        # play pause horizontal layout
         self.PlayPause = QHBoxLayout()
         self.PlayPause.setObjectName(u"PlayPause")
+        
         self.repeatBox = QSpinBox(self.centralwidget)
         self.repeatBox.setObjectName(u"repeatBox")
-
         self.PlayPause.addWidget(self.repeatBox)
 
         self.playButton = QPushButton(self.centralwidget)
         self.playButton.setObjectName(u"playButton")
-
         self.PlayPause.addWidget(self.playButton)
 
         self.cancelButton = QPushButton(self.centralwidget)
         self.cancelButton.setObjectName(u"cancelButton")
-
         self.PlayPause.addWidget(self.cancelButton)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.PlayPause.addItem(self.horizontalSpacer)
 
-
         self.verticalLayout.addLayout(self.PlayPause)
-
+        
+        # Title for digital signals
         self.DTitle = QHBoxLayout()
         self.DTitle.setObjectName(u"DTitle")
         self.label = QLabel(self.centralwidget)
@@ -71,10 +91,10 @@ class Ui_MainWindow(object):
         self.dAdd.setObjectName(u"dAdd")
 
         self.DTitle.addWidget(self.dAdd)
-
-
+        
         self.verticalLayout.addLayout(self.DTitle)
 
+        # Scroll area for digital sequence
         self.DArea = QScrollArea(self.centralwidget)
         self.DArea.setObjectName(u"DArea")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
@@ -84,6 +104,7 @@ class Ui_MainWindow(object):
         self.DArea.setSizePolicy(sizePolicy)
         self.DArea.setAutoFillBackground(False)
         self.DArea.setWidgetResizable(True)
+        # Horizontal layout for digtal sequence
         self.DCol = QWidget()
         self.DCol.setObjectName(u"DCol")
         self.DCol.setGeometry(QRect(0, 0, 803, 448))
@@ -93,11 +114,16 @@ class Ui_MainWindow(object):
         self.DHL.setObjectName(u"DHL")
         self.DHL.setContentsMargins(5, 5, 5, 5)
         self.DId = QVBoxLayout()
+        
+        # digital sequence first column 
         self.DId.setSpacing(0)
         self.DId.setObjectName(u"DId")
         self.DId.setSizeConstraint(QLayout.SizeConstraint.SetDefaultConstraint)
+        
+        # add labels
         self.label_4 = QLabel(self.DCol)
-        self.label_4.setObjectName(u"label_4")
+        self.label_4.setObjectName(u"Dheader")
+        self.label_4.setText("---")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(1)
@@ -106,65 +132,22 @@ class Ui_MainWindow(object):
         self.label_4.setMinimumSize(QSize(0, 0))
 
         self.DId.addWidget(self.label_4)
-
-        self.label_8 = QLabel(self.DCol)
-        self.label_8.setObjectName(u"label_8")
-        sizePolicy1.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_8)
-
-        self.label_5 = QLabel(self.DCol)
-        self.label_5.setObjectName(u"label_5")
-        sizePolicy1.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-        self.label_5.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_5)
-
-        self.label_6 = QLabel(self.DCol)
-        self.label_6.setObjectName(u"label_6")
-        sizePolicy1.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
-        self.label_6.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_6)
-
-        self.label_7 = QLabel(self.DCol)
-        self.label_7.setObjectName(u"label_7")
-        sizePolicy1.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
-        self.label_7.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_7)
-
-        self.label_9 = QLabel(self.DCol)
-        self.label_9.setObjectName(u"label_9")
-        sizePolicy1.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_9)
-
-        self.label_10 = QLabel(self.DCol)
-        self.label_10.setObjectName(u"label_10")
-        sizePolicy1.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
-        self.label_10.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_10)
-
-        self.label_11 = QLabel(self.DCol)
-        self.label_11.setObjectName(u"label_11")
-        sizePolicy1.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
-        self.label_11.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_11)
-
-        self.label_12 = QLabel(self.DCol)
-        self.label_12.setObjectName(u"label_12")
-        sizePolicy1.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
-        self.label_12.setSizePolicy(sizePolicy1)
-
-        self.DId.addWidget(self.label_12)
+        
+        # labels for 8 digital channels
+        self.channels_labels = []
+        for i in range(8):
+            tmp = QLabel(self.DCol)
+            tmp.setObjectName(u"Dlabel_%s" % (i))
+            tmp.setText(u"Channel %s" % (i))
+            sizePolicy1.setHeightForWidth(tmp.sizePolicy().hasHeightForWidth())
+            tmp.setSizePolicy(sizePolicy1)
+            
+            self.channels_labels.append(tmp)
+            self.DId.addWidget(self.channels_labels[-1])
 
         self.label_3 = QLabel(self.DCol)
-        self.label_3.setObjectName(u"label_3")
+        self.label_3.setObjectName(u"footer")
+        self.label_3.setText("---")
         sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy1)
         self.label_3.setMinimumSize(QSize(0, 0))
@@ -173,6 +156,7 @@ class Ui_MainWindow(object):
 
         self.DHL.addLayout(self.DId)
         
+        # Spacer for digital area
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.DHL.addItem(self.horizontalSpacer_4)
@@ -180,7 +164,8 @@ class Ui_MainWindow(object):
         self.DArea.setWidget(self.DCol)
 
         self.verticalLayout.addWidget(self.DArea)
-
+        
+        # Title for analog sequence
         self.ATitle = QHBoxLayout()
         self.ATitle.setObjectName(u"ATitle")
         self.aLabel = QLabel(self.centralwidget)
@@ -199,6 +184,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.ATitle)
 
+        # Scroll area for analog sequence
         self.AArea = QScrollArea(self.centralwidget)
         self.AArea.setObjectName(u"AArea")
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
@@ -215,6 +201,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setSpacing(5)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(5, 5, 5, 5)
+        
+        # First col of analog sequence
         self.AId = QVBoxLayout()
         self.AId.setSpacing(0)
         self.AId.setObjectName(u"AId")
@@ -222,6 +210,7 @@ class Ui_MainWindow(object):
         self.AId.setContentsMargins(0, -1, 0, 0)
         self.label_13 = QLabel(self.ACol)
         self.label_13.setObjectName(u"label_13")
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"---", None))
         sizePolicy1.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
         self.label_13.setSizePolicy(sizePolicy1)
         self.label_13.setMinimumSize(QSize(0, 0))
@@ -230,6 +219,7 @@ class Ui_MainWindow(object):
 
         self.label_14 = QLabel(self.ACol)
         self.label_14.setObjectName(u"label_14")
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Channel 0", None))
         sizePolicy1.setHeightForWidth(self.label_14.sizePolicy().hasHeightForWidth())
         self.label_14.setSizePolicy(sizePolicy1)
 
@@ -237,6 +227,7 @@ class Ui_MainWindow(object):
 
         self.label_15 = QLabel(self.ACol)
         self.label_15.setObjectName(u"label_15")
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Channel 1", None))
         sizePolicy1.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
         self.label_15.setSizePolicy(sizePolicy1)
 
@@ -244,12 +235,12 @@ class Ui_MainWindow(object):
 
         self.label_16 = QLabel(self.ACol)
         self.label_16.setObjectName(u"label_16")
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"---", None))
         sizePolicy1.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
         self.label_16.setSizePolicy(sizePolicy1)
         self.label_16.setMinimumSize(QSize(0, 0))
 
         self.AId.addWidget(self.label_16)
-
 
         self.horizontalLayout_2.addLayout(self.AId)
 
@@ -261,6 +252,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.AArea)
 
+        # Action / Menu bar
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -269,6 +261,7 @@ class Ui_MainWindow(object):
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
+        
         ### Button for debug ###
         self.logButton = QPushButton("Log")
         self.verticalLayout.addWidget(self.logButton)
@@ -284,22 +277,8 @@ class Ui_MainWindow(object):
         self.cancelButton.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Digital Channels", None))
         self.dAdd.setText(QCoreApplication.translate("MainWindow", u"+", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"---", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Channel 0", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Channel 1", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Channel 2", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Channel 3", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Channel 4", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Channel 5", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Channel 6", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Channel 7", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"---", None))
         self.aLabel.setText(QCoreApplication.translate("MainWindow", u"Analog Channels", None))
         self.aAdd.setText(QCoreApplication.translate("MainWindow", u"+", None))
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"---", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Channel 0", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Channel 1", None))
-        self.label_16.setText(QCoreApplication.translate("MainWindow", u"---", None))
     # retranslateUi
     
     ### Connect Signals and Slots ###
@@ -310,7 +289,7 @@ class Ui_MainWindow(object):
     
     ### function for debug purposes
     def log(self):
-        print(self.DHL.count())
+        print("print state")
     
     def addDSequence(self):
         print("addDSequence called")
@@ -350,6 +329,8 @@ class DSequence(QVBoxLayout):
     def __init__(self):
         super(DSequence, self).__init__()
         self.binButtons = [BinButton() for _ in range(8)]
+        
+        self.setSpacing(0)
         
         # timer
         self.frame = QFrame()
@@ -417,6 +398,7 @@ class DSequence(QVBoxLayout):
         self.deleteButton.clicked.connect(self.deleteSequence)
     
     def deleteSequence(self):
+        print("Dsequence deleted")
         for i in reversed(range(self.count())): 
             self.itemAt(i).widget().deleteLater()
         
