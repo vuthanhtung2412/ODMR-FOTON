@@ -32,7 +32,7 @@ else:
     # if discovery failed try to connect by the default hostname
     # IP address of the pulse streamer (default hostname is 'pulsestreamer')
     print("No Pulse Streamer found")
-    ip = 'pulsestreamer';
+    ip = 'pulsestreamer'
 
 #connect to the pulse streamer
 pulser = PulseStreamer(ip)

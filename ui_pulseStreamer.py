@@ -283,13 +283,8 @@ class Ui_MainWindow(object):
     
     ### Connect Signals and Slots ###
     def connectSignalsAndSlots(self):
-        self.logButton.clicked.connect(self.log)
         self.dAdd.clicked.connect(self.addDSequence)
         self.aAdd.clicked.connect(self.addASequence)
-    
-    ### function for debug purposes
-    def log(self):
-        print("print state")
     
     def addDSequence(self):
         print("addDSequence called")
