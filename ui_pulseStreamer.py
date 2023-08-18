@@ -134,16 +134,13 @@ class Ui_MainWindow(object):
         self.DId.addWidget(self.label_4)
         
         # labels for 8 digital channels
-        self.channels_labels = []
         for i in range(8):
             tmp = QLabel(self.DCol)
             tmp.setObjectName(u"Dlabel_%s" % (i))
             tmp.setText(u"Channel %s" % (i))
             sizePolicy1.setHeightForWidth(tmp.sizePolicy().hasHeightForWidth())
             tmp.setSizePolicy(sizePolicy1)
-            
-            self.channels_labels.append(tmp)
-            self.DId.addWidget(self.channels_labels[-1])
+            self.DId.addWidget(tmp)
 
         self.label_3 = QLabel(self.DCol)
         self.label_3.setObjectName(u"footer")
@@ -189,7 +186,7 @@ class Ui_MainWindow(object):
         self.AArea.setObjectName(u"AArea")
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(2)
+        sizePolicy4.setVerticalStretch(3)
         sizePolicy4.setHeightForWidth(self.AArea.sizePolicy().hasHeightForWidth())
         self.AArea.setSizePolicy(sizePolicy4)
         self.AArea.setWidgetResizable(True)
@@ -208,14 +205,14 @@ class Ui_MainWindow(object):
         self.AId.setObjectName(u"AId")
         self.AId.setSizeConstraint(QLayout.SizeConstraint.SetMinimumSize)
         self.AId.setContentsMargins(0, -1, 0, 0)
-        self.label_13 = QLabel(self.ACol)
-        self.label_13.setObjectName(u"label_13")
-        self.label_13.setText(QCoreApplication.translate("MainWindow", u"---", None))
-        sizePolicy1.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
-        self.label_13.setSizePolicy(sizePolicy1)
-        self.label_13.setMinimumSize(QSize(0, 0))
-
-        self.AId.addWidget(self.label_13)
+        
+        for i in range(3):
+            tmp = QLabel(self.DCol)
+            tmp.setObjectName(u"Aheader_%s" % (i))
+            tmp.setText("---")
+            sizePolicy1.setHeightForWidth(tmp.sizePolicy().hasHeightForWidth())
+            tmp.setSizePolicy(sizePolicy1)
+            self.AId.addWidget(tmp)
 
         self.label_14 = QLabel(self.ACol)
         self.label_14.setObjectName(u"label_14")
@@ -398,3 +395,6 @@ class DSequence(QVBoxLayout):
             self.itemAt(i).widget().deleteLater()
         
         self.deleteLater()
+    
+class ASequence(QVBoxLayout):
+    pass
