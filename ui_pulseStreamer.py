@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout,
     QLabel, QLayout, QMainWindow, QMenuBar,
     QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
-    QSpinBox, QStatusBar, QVBoxLayout, QWidget)
+    QSpinBox, QStatusBar, QVBoxLayout, QWidget,QGridLayout)
 
 class Ui_MainWindow(object):
         
@@ -194,10 +194,10 @@ class Ui_MainWindow(object):
         self.ACol.setObjectName(u"ACol")
         self.ACol.setEnabled(True)
         self.ACol.setGeometry(QRect(0, 0, 803, 127))
-        self.horizontalLayout_2 = QHBoxLayout(self.ACol)
-        self.horizontalLayout_2.setSpacing(5)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(5, 5, 5, 5)
+        self.AHL = QHBoxLayout(self.ACol)
+        self.AHL.setSpacing(5)
+        self.AHL.setObjectName(u"AHL")
+        self.AHL.setContentsMargins(5, 5, 5, 5)
         
         # First col of analog sequence
         self.AId = QVBoxLayout()
@@ -239,11 +239,11 @@ class Ui_MainWindow(object):
 
         self.AId.addWidget(self.label_16)
 
-        self.horizontalLayout_2.addLayout(self.AId)
+        self.AHL.addLayout(self.AId)
 
         self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout_2.addItem(self.horizontalSpacer_5)
+        self.AHL.addItem(self.horizontalSpacer_5)
 
         self.AArea.setWidget(self.ACol)
 
@@ -268,8 +268,8 @@ class Ui_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+    def retranslateUi(self, MainWindow : QMainWindow):
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Pulser Streamer Controller", None))
         self.playButton.setText(QCoreApplication.translate("MainWindow", u"Play", None))
         self.cancelButton.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Digital Channels", None))
@@ -291,6 +291,8 @@ class Ui_MainWindow(object):
     
     def addASequence(self):
         print("addASequence called")
+        newSeq = ASequence()
+        self.AHL.insertLayout(self.AHL.count()-1,newSeq)
         pass
 
 class BinButton(QPushButton):
@@ -397,4 +399,117 @@ class DSequence(QVBoxLayout):
         self.deleteLater()
     
 class ASequence(QVBoxLayout):
-    pass
+    def __init__(self):
+        super(ASequence, self).__init__()
+        self.binButtons = [BinButton() for _ in range(2)]
+        
+        self.setSpacing(0)
+        self.frame = QFrame()
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(3)
+        sizePolicy.setHeightForWidth(False)
+        self.frame.setSizePolicy(sizePolicy)
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout = QGridLayout(self.frame)
+        self.gridLayout.setSpacing(0)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)   
+        
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(1)
+        sizePolicy1.setHeightForWidth(False)
+        
+        self.period = QLabel(self.frame)
+        self.period.setObjectName(u"period")
+        self.period.setText(u"period :")
+        self.period.setSizePolicy(sizePolicy1)
+        self.gridLayout.addWidget(self.period, 0, 0, 1, 1)
+        
+        self.periodVal = QSpinBox(self.frame)
+        self.periodVal.setObjectName(u"periodVal")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(1)
+        sizePolicy2.setHeightForWidth(False)
+        self.periodVal.setSizePolicy(sizePolicy2)
+        self.gridLayout.addWidget(self.periodVal, 0, 1, 1, 1)   
+    
+        self.scale = QComboBox(self.frame)
+        self.scale.addItem("ns")
+        self.scale.addItem("micro")
+        self.scale.addItem("ms")
+        self.scale.addItem("s")
+        self.scale.setObjectName(u"scale")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(1)
+        sizePolicy3.setHeightForWidth(False)
+        self.scale.setSizePolicy(sizePolicy3)
+        self.scale.setMinimumSize(QSize(0, 1))
+        self.scale.setMaximumSize(QSize(55, 16777215))
+        self.gridLayout.addWidget(self.scale, 0, 2, 1, 1)     
+        
+        self.rep = QLabel(self.frame)
+        self.rep.setObjectName(u"rep")
+        self.rep.setText(u"reps :")
+        sizePolicy.setHeightForWidth(False)
+        self.rep.setSizePolicy(sizePolicy1)
+        self.gridLayout.addWidget(self.rep, 1, 0, 1, 1)
+        
+        self.repVal = QSpinBox(self.frame)
+        self.repVal.setObjectName(u"repVal")
+        sizePolicy2.setHeightForWidth(False)
+        self.repVal.setSizePolicy(sizePolicy2)
+        self.gridLayout.addWidget(self.repVal, 1, 1, 1, 1)
+        
+        self.type = QLabel(self.frame)
+        self.type.setObjectName(u"type")
+        self.type.setText(u"type :")
+        sizePolicy.setHeightForWidth(False)
+        self.type.setSizePolicy(sizePolicy1)
+        self.gridLayout.addWidget(self.type, 2, 0, 1, 1)
+        
+        self.comboBox_3 = QComboBox(self.frame)
+        self.comboBox_3.addItem("DC")
+        self.comboBox_3.addItem("Sin")
+        self.comboBox_3.addItem("Chirp")
+        self.comboBox_3.setObjectName(u"comboBox_3")
+        sizePolicy3.setHeightForWidth(False)
+        self.comboBox_3.setSizePolicy(sizePolicy3)
+        self.gridLayout.addWidget(self.comboBox_3, 2, 1, 1, 2)
+        
+        self.addWidget(self.frame)
+        
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(1)
+        sizePolicy4.setHeightForWidth(False)
+        
+        for b in self.binButtons:
+            self.addWidget(b)
+        
+        self.deleteButton = QPushButton()
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(1)
+        self.deleteButton.setSizePolicy(sizePolicy4)
+        self.deleteButton.setMinimumSize(QSize(0, 0))
+        self.deleteButton.setMaximumSize(QSize(16777215, 16777215))
+        self.deleteButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.deleteButton.setAutoFillBackground(False)
+        self.deleteButton.setCheckable(False)
+        self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
+        self.addWidget(self.deleteButton)
+        
+        # connect to delete slot
+        self.deleteButton.clicked.connect(self.deleteSequence)
+        
+    def deleteSequence(self):
+        print("Dsequence deleted")
+        for i in reversed(range(self.count())): 
+            self.itemAt(i).widget().deleteLater()
+        
+        self.deleteLater()        

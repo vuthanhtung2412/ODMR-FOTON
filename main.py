@@ -111,7 +111,7 @@ class MainWindow(QMainWindow):
     ### function for debug purposes
     def log(self):
         print("print state")
-        print(self.pulser)
+        print("IP address of pulser: " + str(self.pulser))
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
