@@ -100,7 +100,6 @@ class Ui_MainWindow(object):
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(7)
-        sizePolicy.setHeightForWidth(self.DArea.sizePolicy().hasHeightForWidth())
         self.DArea.setSizePolicy(sizePolicy)
         self.DArea.setAutoFillBackground(False)
         self.DArea.setWidgetResizable(True)
@@ -127,7 +126,6 @@ class Ui_MainWindow(object):
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(1)
-        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy1)
         self.label_4.setMinimumSize(QSize(0, 0))
 
@@ -138,14 +136,12 @@ class Ui_MainWindow(object):
             tmp = QLabel(self.DCol)
             tmp.setObjectName(u"Dlabel_%s" % (i))
             tmp.setText(u"Channel %s" % (i))
-            sizePolicy1.setHeightForWidth(tmp.sizePolicy().hasHeightForWidth())
             tmp.setSizePolicy(sizePolicy1)
             self.DId.addWidget(tmp)
 
         self.label_3 = QLabel(self.DCol)
         self.label_3.setObjectName(u"footer")
         self.label_3.setText("---")
-        sizePolicy1.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy1)
         self.label_3.setMinimumSize(QSize(0, 0))
 
@@ -187,7 +183,6 @@ class Ui_MainWindow(object):
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(3)
-        sizePolicy4.setHeightForWidth(self.AArea.sizePolicy().hasHeightForWidth())
         self.AArea.setSizePolicy(sizePolicy4)
         self.AArea.setWidgetResizable(True)
         self.ACol = QWidget()
@@ -210,30 +205,19 @@ class Ui_MainWindow(object):
             tmp = QLabel(self.DCol)
             tmp.setObjectName(u"Aheader_%s" % (i))
             tmp.setText("---")
-            sizePolicy1.setHeightForWidth(tmp.sizePolicy().hasHeightForWidth())
             tmp.setSizePolicy(sizePolicy1)
             self.AId.addWidget(tmp)
 
-        self.label_14 = QLabel(self.ACol)
-        self.label_14.setObjectName(u"label_14")
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Channel 0", None))
-        sizePolicy1.setHeightForWidth(self.label_14.sizePolicy().hasHeightForWidth())
-        self.label_14.setSizePolicy(sizePolicy1)
-
-        self.AId.addWidget(self.label_14)
-
-        self.label_15 = QLabel(self.ACol)
-        self.label_15.setObjectName(u"label_15")
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Channel 1", None))
-        sizePolicy1.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
-        self.label_15.setSizePolicy(sizePolicy1)
-
-        self.AId.addWidget(self.label_15)
+        for i in range(8):
+            tmp = QLabel(self.ACol)
+            tmp.setObjectName(u"Alabel_%s" % (i))
+            tmp.setText(u"Channel %s" % (i))
+            tmp.setSizePolicy(sizePolicy1)
+            self.AId.addWidget(tmp)
 
         self.label_16 = QLabel(self.ACol)
         self.label_16.setObjectName(u"label_16")
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"---", None))
-        sizePolicy1.setHeightForWidth(self.label_16.sizePolicy().hasHeightForWidth())
         self.label_16.setSizePolicy(sizePolicy1)
         self.label_16.setMinimumSize(QSize(0, 0))
 
@@ -301,12 +285,8 @@ class BinButton(QPushButton):
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
-        sizePolicy.setHeightForWidth(self.sizePolicy().hasHeightForWidth())
         self.setSizePolicy(sizePolicy)
-        self.setMinimumSize(QSize(0, 0))
-        self.setMaximumSize(QSize(16777215, 16777215))
         self.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.setAutoFillBackground(False)
         self.setCheckable(True)
         self.setText("0")
         
@@ -333,12 +313,9 @@ class DSequence(QVBoxLayout):
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
-        sizePolicy.setHeightForWidth(False)
         
         # size policy for the frame
         self.frame.setSizePolicy(sizePolicy)
-        self.frame.setMinimumSize(QSize(0, 0))
-        self.frame.setMaximumSize(QSize(16777215, 16777215))
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         
@@ -353,7 +330,6 @@ class DSequence(QVBoxLayout):
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(1)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(False)
         self.duration.setSizePolicy(sizePolicy2)
 
         self.DHL.addWidget(self.duration)
@@ -379,11 +355,7 @@ class DSequence(QVBoxLayout):
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(1)
         self.deleteButton.setSizePolicy(sizePolicy3)
-        self.deleteButton.setMinimumSize(QSize(0, 0))
-        self.deleteButton.setMaximumSize(QSize(16777215, 16777215))
         self.deleteButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.deleteButton.setAutoFillBackground(False)
-        self.deleteButton.setCheckable(False)
         self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
 
         self.addWidget(self.deleteButton)
@@ -402,16 +374,16 @@ class ASequence(QVBoxLayout):
     def __init__(self):
         super(ASequence, self).__init__()
         self.binButtons = [BinButton() for _ in range(2)]
-        
+
         self.setSpacing(0)
+        # Header frame for analog channel
         self.frame = QFrame()
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(3)
-        sizePolicy.setHeightForWidth(False)
         self.frame.setSizePolicy(sizePolicy)
-        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        
+        # Add grid layout to the frame
         self.gridLayout = QGridLayout(self.frame)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -420,8 +392,8 @@ class ASequence(QVBoxLayout):
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(1)
-        sizePolicy1.setHeightForWidth(False)
         
+        # Title and combo box to set up duration of a period
         self.period = QLabel(self.frame)
         self.period.setObjectName(u"period")
         self.period.setText(u"period :")
@@ -433,10 +405,9 @@ class ASequence(QVBoxLayout):
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(1)
-        sizePolicy2.setHeightForWidth(False)
         self.periodVal.setSizePolicy(sizePolicy2)
         self.gridLayout.addWidget(self.periodVal, 0, 1, 1, 1)   
-    
+
         self.scale = QComboBox(self.frame)
         self.scale.addItem("ns")
         self.scale.addItem("micro")
@@ -446,29 +417,25 @@ class ASequence(QVBoxLayout):
         sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(1)
-        sizePolicy3.setHeightForWidth(False)
         self.scale.setSizePolicy(sizePolicy3)
-        self.scale.setMinimumSize(QSize(0, 1))
-        self.scale.setMaximumSize(QSize(55, 16777215))
         self.gridLayout.addWidget(self.scale, 0, 2, 1, 1)     
         
+        # Label and spinbox for reps
         self.rep = QLabel(self.frame)
         self.rep.setObjectName(u"rep")
         self.rep.setText(u"reps :")
-        sizePolicy.setHeightForWidth(False)
         self.rep.setSizePolicy(sizePolicy1)
         self.gridLayout.addWidget(self.rep, 1, 0, 1, 1)
         
         self.repVal = QSpinBox(self.frame)
         self.repVal.setObjectName(u"repVal")
-        sizePolicy2.setHeightForWidth(False)
         self.repVal.setSizePolicy(sizePolicy2)
         self.gridLayout.addWidget(self.repVal, 1, 1, 1, 1)
         
+        # label and combo box for type of signal
         self.type = QLabel(self.frame)
         self.type.setObjectName(u"type")
         self.type.setText(u"type :")
-        sizePolicy.setHeightForWidth(False)
         self.type.setSizePolicy(sizePolicy1)
         self.gridLayout.addWidget(self.type, 2, 0, 1, 1)
         
@@ -477,7 +444,6 @@ class ASequence(QVBoxLayout):
         self.comboBox_3.addItem("Sin")
         self.comboBox_3.addItem("Chirp")
         self.comboBox_3.setObjectName(u"comboBox_3")
-        sizePolicy3.setHeightForWidth(False)
         self.comboBox_3.setSizePolicy(sizePolicy3)
         self.gridLayout.addWidget(self.comboBox_3, 2, 1, 1, 2)
         
@@ -486,21 +452,18 @@ class ASequence(QVBoxLayout):
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(1)
-        sizePolicy4.setHeightForWidth(False)
         
+        # add buttons
         for b in self.binButtons:
             self.addWidget(b)
-        
+            
+        # delete button
         self.deleteButton = QPushButton()
         sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(1)
         self.deleteButton.setSizePolicy(sizePolicy4)
-        self.deleteButton.setMinimumSize(QSize(0, 0))
-        self.deleteButton.setMaximumSize(QSize(16777215, 16777215))
         self.deleteButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.deleteButton.setAutoFillBackground(False)
-        self.deleteButton.setCheckable(False)
         self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         self.addWidget(self.deleteButton)
         
