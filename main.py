@@ -1,3 +1,4 @@
+import qudi
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QFile
@@ -32,6 +33,7 @@ class MainWindow(QMainWindow):
             #Connect to the first discovered Pulse Streamer
             ip = devices[0][0]
             self.ui.IPLabel.setText(ip)
+            print(ip)
         else:
             # if discovery failed try to connect by the default hostname
             # IP address of the pulse streamer (default hostname is 'pulsestreamer')

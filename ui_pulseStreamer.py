@@ -208,7 +208,7 @@ class Ui_MainWindow(object):
             tmp.setSizePolicy(sizePolicy1)
             self.AId.addWidget(tmp)
 
-        for i in range(8):
+        for i in range(2):
             tmp = QLabel(self.ACol)
             tmp.setObjectName(u"Alabel_%s" % (i))
             tmp.setText(u"Channel %s" % (i))

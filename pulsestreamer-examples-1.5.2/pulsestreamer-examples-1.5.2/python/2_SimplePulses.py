@@ -41,7 +41,7 @@ import numpy as np
 https://www.swabianinstruments.com/static/documentation/PulseStreamer/sections/network.html
 """
 
-ip_hostname='pulsestreamer' # edit this line to use a specific Pulse Streamer IP address
+ip_hostname='169.254.8.2' # edit this line to use a specific Pulse Streamer IP address
 
 pulser = PulseStreamer(ip_hostname)
 
