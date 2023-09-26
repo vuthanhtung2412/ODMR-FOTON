@@ -8,6 +8,16 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.addDChannelBut.clicked.connect(self.addSequence)
+        
+    def play(self):
+        pass
+        
+    def addSequence(self):
+        if self.ui.DTabWidget.currentIndex():
+            self.ui.odmrScrollArea.addSequence()
+        else: 
+            self.ui.rabiScrollArea.addSequence()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

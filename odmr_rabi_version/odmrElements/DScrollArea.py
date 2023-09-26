@@ -32,8 +32,8 @@ class DScrollArea(QScrollArea):
         self.odmrHLContainer.setObjectName(u"odmrHLContainer")
         self.odmrHLContainer.setGeometry(QRect(0, 0, 650, 259))
         self.odmrHLContainer.setAutoFillBackground(True)
-        self.odmrHorizontalLayout = QHBoxLayout(self.odmrHLContainer)
-        self.odmrHorizontalLayout.setObjectName(u"odmrHorizontalLayout")
+        self.DHLayout = QHBoxLayout(self.odmrHLContainer)
+        self.DHLayout.setObjectName(u"DHLayout")
         self.titleCol = QVBoxLayout()
         self.titleCol.setSpacing(0)
         self.titleCol.setObjectName(u"titleCol")
@@ -63,18 +63,21 @@ class DScrollArea(QScrollArea):
 
         self.titleCol.addWidget(self.bottomCell)
 
-        self.odmrHorizontalLayout.addLayout(self.titleCol)
+        self.DHLayout.addLayout(self.titleCol)
         
         # TODO : replace by DSequence obj
         self.DSequence = DSequence()
         
-        self.odmrHorizontalLayout.addLayout(self.DSequence)
+        self.DHLayout.addLayout(self.DSequence)
 
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.DHLayoutSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.odmrHorizontalLayout.addItem(self.horizontalSpacer_7)
+        self.DHLayout.addItem(self.DHLayoutSpacer)
 
         self.setWidget(self.odmrHLContainer)
     
     def addSequence(self):
+        print("%s : sequence added" %(self.objectName()))
+        newSeq = DSequence()
+        self.DHLayout.insertLayout(self.DHLayout.count()-1,newSeq)
         pass

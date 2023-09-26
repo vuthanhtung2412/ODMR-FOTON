@@ -158,8 +158,9 @@ class Ui_MainWindow(object):
         self.rabiGrid.setObjectName(u"rabiGrid")
         
         # TODO : make this scroll area to class
-        self.rabiDScrollArea = DScrollArea(self.rabiTab)
-        self.rabiGrid.addWidget(self.rabiDScrollArea, 0, 0, 2, 1)
+        self.rabiScrollArea = DScrollArea(self.rabiTab)
+        self.rabiScrollArea.setObjectName("rabiScrollArea")
+        self.rabiGrid.addWidget(self.rabiScrollArea, 0, 0, 2, 1)
         
         # box to set light source parameter for rabi exp
         self.rabiSourceParamBox = QGroupBox(self.rabiTab)
@@ -332,6 +333,7 @@ class Ui_MainWindow(object):
         self.odmrTabHL.setObjectName(u"odmrTabHL")
         # TODO : replace by a scroll area obj
         self.odmrScrollArea = DScrollArea(self.odmrTab)
+        self.odmrScrollArea.setObjectName("odmrScrollAreas")
         self.odmrTabHL.addWidget(self.odmrScrollArea)
         
         # odmr variable light source 
