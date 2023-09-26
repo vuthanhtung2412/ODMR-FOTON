@@ -583,6 +583,8 @@ class Ui_MainWindow(object):
         self.DTabWidget.setTabText(self.DTabWidget.indexOf(self.odmrTab), QCoreApplication.translate("MainWindow", u"ODMR", None))
         self.analogTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Analog channels (*checkbox for variable steps)", None))
         self.addASequenceButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        
+        self.logStateButton.setText(QCoreApplication.translate("MainWindow", u"Log State", None))
 
     # retranslateUi
             

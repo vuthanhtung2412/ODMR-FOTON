@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         self.ui.loadButton.clicked.connect(self.load)
         self.ui.cancelButton.clicked.connect(self.cancel)
         self.ui.addASequenceButton.clicked.connect(self.addASequence)
+        self.ui.logStateButton.clicked.connect(self.log)
         
     def searchPulseStreamer(self):
         print("search Pulstreamer")
@@ -49,6 +50,9 @@ class MainWindow(QMainWindow):
         self.ui.AArea.addASequence()
         pass
 
+    def log(self):
+        print("Log Info")
+        pass
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
