@@ -50,10 +50,10 @@ class DSequence(QVBoxLayout):
         self.horizontalLayout_22.addWidget(self.duration_2)
 
         self.comboBox_12 = QComboBox(self.frame_4)
-        self.comboBox_12.addItem("")
-        self.comboBox_12.addItem("")
-        self.comboBox_12.addItem("")
-        self.comboBox_12.addItem("")
+        self.comboBox_12.addItem("ns")
+        self.comboBox_12.addItem("micro")
+        self.comboBox_12.addItem("ms")
+        self.comboBox_12.addItem("s")
         self.comboBox_12.setObjectName(u"comboBox_12")
         self.comboBox_12.setMaximumSize(QSize(55, 16777215))
 
