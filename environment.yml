@@ -20,6 +20,7 @@ dependencies:
       - asteval==0.9.31
       - asttokens==2.2.1
       - async-lru==2.0.3
+      - async-timeout==4.0.3
       - attrs==23.1.0
       - babel==2.12.1
       - backcall==0.2.0
@@ -50,6 +51,7 @@ dependencies:
       - gitpython==3.1.32
       - greenlet==2.0.2
       - idna==3.4
+      - ifaddr==0.2.0
       - importlib-metadata==6.8.0
       - importlib-resources==6.0.0
       - ipykernel==6.25.0
@@ -86,6 +88,7 @@ dependencies:
       - mdit-py-plugins==0.4.0
       - mdurl==0.1.2
       - mistune==3.0.1
+      - moku==3.1.0
       - nbclient==0.8.0
       - nbconvert==7.7.3
       - nbformat==5.9.1
@@ -159,7 +162,7 @@ dependencies:
       - webencodings==0.5.1
       - websocket-client==1.6.1
       - widgetsnbextension==4.0.8
+      - zeroconf==0.112.0
       - zipp==3.16.2
       - zope-event==5.0
       - zope-interface==6.0
-prefix: C:\Users\vutha\miniconda3\envs\qudi-core
