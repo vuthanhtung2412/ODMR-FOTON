@@ -226,4 +226,5 @@ class AArea(QScrollArea):
         self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
     
     def addASequence(self):
+        print("%s : add new sequence" %(self.objectName()))
         pass

@@ -73,28 +73,47 @@ class Ui_MainWindow(object):
         sizePolicy9.setHorizontalStretch(1)
         sizePolicy9.setVerticalStretch(0)
         
+        # Contents
+        
         # Main layout
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.mainVerticalLayout = QVBoxLayout(self.centralwidget)
         self.mainVerticalLayout.setObjectName(u"mainVerticalLayout")
         
-        # Search device
-        self.deviceSearchHLayout = QHBoxLayout()
-        self.deviceSearchHLayout.setObjectName(u"deviceSearchHLayout")
-        self.searchButton = QPushButton(self.centralwidget)
-        self.searchButton.setObjectName(u"searchButton")
-        self.searchButton.setSizePolicy(sizePolicy)
+        # Search Pulser Streamer
+        self.searchPSBox = QHBoxLayout()
+        self.searchPSBox.setObjectName(u"searchPSBox")
+        self.searchPSButton = QPushButton(self.centralwidget)
+        self.searchPSButton.setObjectName(u"searchPSButton")
+        self.searchPSButton.setSizePolicy(sizePolicy)
 
-        self.deviceSearchHLayout.addWidget(self.searchButton)
+        self.searchPSBox.addWidget(self.searchPSButton)
 
-        self.IPaddress = QLabel(self.centralwidget)
-        self.IPaddress.setObjectName(u"IPaddress")
-        self.IPaddress.setSizePolicy(sizePolicy1)
+        self.PSaddress = QLabel(self.centralwidget)
+        self.PSaddress.setObjectName(u"PSaddress")
+        self.PSaddress.setSizePolicy(sizePolicy1)
 
-        self.deviceSearchHLayout.addWidget(self.IPaddress)
+        self.searchPSBox.addWidget(self.PSaddress)
 
-        self.mainVerticalLayout.addLayout(self.deviceSearchHLayout)
+        self.mainVerticalLayout.addLayout(self.searchPSBox)
+        
+        # Search R&S generator
+        self.searchRSBox = QHBoxLayout()
+        self.searchRSBox.setObjectName(u"searchRSBox")
+        self.searchRSButton = QPushButton(self.centralwidget)
+        self.searchRSButton.setObjectName(u"searchRSButton")
+        self.searchRSButton.setSizePolicy(sizePolicy)
+
+        self.searchRSBox.addWidget(self.searchRSButton)
+
+        self.RSaddress = QLabel(self.centralwidget)
+        self.RSaddress.setObjectName(u"RSaddress")
+        self.RSaddress.setSizePolicy(sizePolicy1)
+
+        self.searchRSBox.addWidget(self.RSaddress)
+
+        self.mainVerticalLayout.addLayout(self.searchRSBox)
         
         # Play Pause bar 
         self.PlayPause = QHBoxLayout()
@@ -111,9 +130,12 @@ class Ui_MainWindow(object):
 
         self.PlayPause.addWidget(self.repeatBox)
 
+        self.loadButton = QPushButton(self.centralwidget)
+        self.loadButton.setObjectName(u"loadButton")
+        self.PlayPause.addWidget(self.loadButton)
+        
         self.playButton = QPushButton(self.centralwidget)
         self.playButton.setObjectName(u"playButton")
-
         self.PlayPause.addWidget(self.playButton)
 
         self.cancelButton = QPushButton(self.centralwidget)
@@ -458,27 +480,33 @@ class Ui_MainWindow(object):
         self.mainVerticalLayout.addWidget(self.DTabWidget)
 
         # Title for analog channel
-        self.horizontalLayout_4 = QHBoxLayout()
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_4 = QLabel(self.centralwidget)
-        self.label_4.setObjectName(u"label_4")
+        self.analogTitleHLayout = QHBoxLayout()
+        self.analogTitleHLayout.setObjectName(u"analogTitleHLayout")
+        self.analogTitleLabel = QLabel(self.centralwidget)
+        self.analogTitleLabel.setObjectName(u"analogTitleLabel")
 
-        self.horizontalLayout_4.addWidget(self.label_4)
+        self.analogTitleHLayout.addWidget(self.analogTitleLabel)
 
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.analogTitleSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.horizontalLayout_4.addItem(self.horizontalSpacer_2)
+        self.analogTitleHLayout.addItem(self.analogTitleSpacer)
 
-        self.pushButton_5 = QPushButton(self.centralwidget)
-        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.addASequenceButton = QPushButton(self.centralwidget)
+        self.addASequenceButton.setObjectName(u"addASequenceButton")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_5)
+        self.analogTitleHLayout.addWidget(self.addASequenceButton)
 
-        self.mainVerticalLayout.addLayout(self.horizontalLayout_4)
+        self.mainVerticalLayout.addLayout(self.analogTitleHLayout)
 
         # Area for analog signal
         self.AArea = AArea(self.centralwidget)
         self.mainVerticalLayout.addWidget(self.AArea)
+        
+        # Log state 
+        self.logStateButton = QPushButton(self.centralwidget)
+        self.logStateButton.setObjectName(u"logStateButton")
+        self.logStateButton.setSizePolicy(sizePolicy3)
+        self.mainVerticalLayout.addWidget(self.logStateButton)
 
         # Final set up 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -500,10 +528,13 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.searchButton.setText(QCoreApplication.translate("MainWindow", u"Search devices", None))
-        self.IPaddress.setText(QCoreApplication.translate("MainWindow", u"IP address", None))
+        self.searchPSButton.setText(QCoreApplication.translate("MainWindow", u"Search Pulstreamer", None))
+        self.PSaddress.setText(QCoreApplication.translate("MainWindow", u"pulse streamer IP address", None))
+        self.searchRSButton.setText(QCoreApplication.translate("MainWindow", u"Search generator", None))
+        self.RSaddress.setText(QCoreApplication.translate("MainWindow", u"generator address", None))
         self.reps.setText(QCoreApplication.translate("MainWindow", u"Reps :", None))
         self.playButton.setText(QCoreApplication.translate("MainWindow", u"Play", None))
+        self.loadButton.setText(QCoreApplication.translate("MainWindow", u"Load", None))
         self.cancelButton.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
         self.DTitle.setText(QCoreApplication.translate("MainWindow", u"Digital channels (*checkbox for variable step)", None))
         self.addDChannelBut.setText(QCoreApplication.translate("MainWindow", u"+", None))
@@ -550,8 +581,8 @@ class Ui_MainWindow(object):
         self.odmrPowerScale.setItemText(0, QCoreApplication.translate("MainWindow", u"dBm", None))
 
         self.DTabWidget.setTabText(self.DTabWidget.indexOf(self.odmrTab), QCoreApplication.translate("MainWindow", u"ODMR", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Analog channels (*checkbox for variable steps)", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.analogTitleLabel.setText(QCoreApplication.translate("MainWindow", u"Analog channels (*checkbox for variable steps)", None))
+        self.addASequenceButton.setText(QCoreApplication.translate("MainWindow", u"+", None))
 
     # retranslateUi
             

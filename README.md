@@ -5,6 +5,9 @@
 **Machines used:**
 + Pulse Streamer 8/2 : https://www.swabianinstruments.com/pulse-streamer-8-2/
 + Moku Pro : https://www.liquidinstruments.com/products/hardware-platforms/mokupro/
++ Rohde & Schwarz SMB100A : 
+    + Pycharm plugin : https://rohde-schwarz.github.io/RsSmbv_PythonDocumentation/getting_started.html
+    + Python API : https://rsicpycharmplugin.readthedocs.io/en/latest/ 
 
 ## How to use
 
@@ -27,3 +30,17 @@
 
 **First version**
 ![](demos/demos_basic.png)
+
+**ODMR & Rabi version**
+
+## Futures works:
+
+Error handling non found machine 
+
+Load frequency list to Rohde & Schwarz SMB100A 
+
+Ensure every thing is loaded before execution
+
+Moku integration
+
+Rohde & Schwarz SMB100A List mode (load list of frequency)
