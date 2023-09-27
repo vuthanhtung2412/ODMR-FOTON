@@ -1,4 +1,3 @@
-import qudi
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QFile
@@ -9,6 +8,8 @@ from pulsestreamer import PulseStreamer
 from pulsestreamer import findPulseStreamers
 from pulsestreamer import TriggerStart, TriggerRearm
 from pulsestreamer import Sequence, OutputState
+
+
 
 class MainWindow(QMainWindow):
     def __init__(self):

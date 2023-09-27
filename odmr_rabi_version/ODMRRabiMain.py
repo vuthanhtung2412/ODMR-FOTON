@@ -3,6 +3,12 @@ from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QFile
 from ui_odmrEtRabi import Ui_MainWindow
 
+# Pulser dependency
+from pulsestreamer import PulseStreamer
+from pulsestreamer import findPulseStreamers
+from pulsestreamer import TriggerStart, TriggerRearm
+from pulsestreamer import Sequence, OutputState
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -22,6 +28,28 @@ class MainWindow(QMainWindow):
         
     def searchPulseStreamer(self):
         print("search Pulstreamer")
+        devices = findPulseStreamers()
+        if devices !=[]:
+            print("Detected Pulse Streamer 8/2: ")
+            print(devices)
+            print("------------------------------------------------------\n")
+            #Connect to the first discovered Pulse Streamer
+            ip = devices[0][0]
+            self.ui.IPLabel.setText(ip)
+            print(ip)
+        else:
+            # if discovery failed try to connect by the default hostname
+            # IP address of the pulse streamer (default hostname is 'pulsestreamer')
+            print("No Pulse Streamer found")
+            ip = 'pulsestreamer'
+        
+        #connect to the pulse streamer
+        self.pulser = PulseStreamer(ip)
+
+        # Print serial number and FPGA-ID
+        if self.pulser:
+            print('Serial: ' + self.pulser.getSerial())
+            print('FPGA ID: ' + self.pulser.getFPGAID())
         pass
     
     def searchRSGenerator(self):
