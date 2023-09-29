@@ -9,8 +9,6 @@ from pulsestreamer import findPulseStreamers
 from pulsestreamer import TriggerStart, TriggerRearm
 from pulsestreamer import Sequence, OutputState
 
-
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()

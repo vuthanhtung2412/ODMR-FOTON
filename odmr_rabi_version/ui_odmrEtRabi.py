@@ -22,9 +22,9 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QSpinBox, QStatusBar, QTabWidget, QVBoxLayout,
     QWidget)
 
-from odmrElements.binButton import BinButton
-from odmrElements.AArea import AArea
-from odmrElements.DScrollArea import DScrollArea
+from odmr_rabi_elements.binButton import BinButton
+from odmr_rabi_elements.AArea import AArea
+from odmr_rabi_elements.DScrollArea import DScrollArea
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):

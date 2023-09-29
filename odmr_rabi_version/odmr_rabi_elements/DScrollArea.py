@@ -3,7 +3,7 @@ from PySide6.QtWidgets import (QCheckBox, QComboBox, QFrame, QHBoxLayout, QLabel
     QLayout, QLineEdit, QPushButton, QScrollArea, QSizePolicy, QSpacerItem,
     QSpinBox, QVBoxLayout, QWidget)
 
-from odmrElements.DSequence import DSequence
+from odmr_rabi_elements.DSequence import DSequence
 
 class DScrollArea(QScrollArea):
     def __init__(self, parent = None) -> None:

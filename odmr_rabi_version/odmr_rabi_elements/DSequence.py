@@ -3,7 +3,7 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QHBoxLayout, QLayout, QPushButton, QSizePolicy, 
     QSpinBox, QVBoxLayout)
 
-from odmrElements.binButton import BinButton
+from odmr_rabi_elements.binButton import BinButton
 
 class DSequence(QVBoxLayout):
     def __init__(self) -> None:
@@ -36,28 +36,28 @@ class DSequence(QVBoxLayout):
         self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
         self.horizontalLayout_22.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.horizontalLayout_22.setContentsMargins(0, 0, 0, 0)
-        self.checkBox = QCheckBox(self.frame_4)
-        self.checkBox.setObjectName(u"checkBox")
+        self.variCheckBox = QCheckBox(self.frame_4)
+        self.variCheckBox.setObjectName(u"variCheckBox")
 
-        self.horizontalLayout_22.addWidget(self.checkBox)
+        self.horizontalLayout_22.addWidget(self.variCheckBox)
 
-        self.duration_2 = QSpinBox(self.frame_4)
-        self.duration_2.setObjectName(u"duration_2")
-        self.duration_2.setSizePolicy(sizePolicy5)
-        self.duration_2.setMinimum(1)
-        self.duration_2.setMaximum(1000)
+        self.duration = QSpinBox(self.frame_4)
+        self.duration.setObjectName(u"duration")
+        self.duration.setSizePolicy(sizePolicy5)
+        self.duration.setMinimum(1)
+        self.duration.setMaximum(1000)
 
-        self.horizontalLayout_22.addWidget(self.duration_2)
+        self.horizontalLayout_22.addWidget(self.duration)
 
-        self.comboBox_12 = QComboBox(self.frame_4)
-        self.comboBox_12.addItem("ns")
-        self.comboBox_12.addItem("micro")
-        self.comboBox_12.addItem("ms")
-        self.comboBox_12.addItem("s")
-        self.comboBox_12.setObjectName(u"comboBox_12")
-        self.comboBox_12.setMaximumSize(QSize(55, 16777215))
+        self.scaleComboBox = QComboBox(self.frame_4)
+        self.scaleComboBox.addItem("ns")
+        self.scaleComboBox.addItem("micro")
+        self.scaleComboBox.addItem("ms")
+        self.scaleComboBox.addItem("s")
+        self.scaleComboBox.setObjectName(u"scaleComboBox")
+        self.scaleComboBox.setMaximumSize(QSize(55, 16777215))
 
-        self.horizontalLayout_22.addWidget(self.comboBox_12)
+        self.horizontalLayout_22.addWidget(self.scaleComboBox)
 
         self.addWidget(self.frame_4)
 

@@ -9,7 +9,7 @@
     + Pycharm plugin : https://rohde-schwarz.github.io/RsSmbv_PythonDocumentation/getting_started.html
     + Python API : https://rsicpycharmplugin.readthedocs.io/en/latest/ 
 
-## How to use
+# How to use
 
 **Install conda on Linux**
 
@@ -52,14 +52,16 @@
 
     python main.py
 
-## Demos
+# Demos
 
 **First version**
 ![](demos/demos_basic.png)
 
 **ODMR & Rabi version**
 
-## Futures works:
+# Explain file structure
+
+# Futures works:
 
 Error handling non found machine 
 
@@ -70,3 +72,5 @@ Ensure every thing is loaded before execution
 Moku integration
 
 Rohde & Schwarz SMB100A List mode (load list of frequency)
+
+Switch frequency when receive signal from the Pulse Streamer

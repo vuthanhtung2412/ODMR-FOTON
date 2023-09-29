@@ -3,11 +3,17 @@ from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtCore import QFile
 from ui_odmrEtRabi import Ui_MainWindow
 
-# Pulser dependency
+# Pulser dependencies
 from pulsestreamer import PulseStreamer
 from pulsestreamer import findPulseStreamers
 from pulsestreamer import TriggerStart, TriggerRearm
 from pulsestreamer import Sequence, OutputState
+
+# R&S dependencies
+from RsSmbv import *
+
+# other dependencies
+from odmr_rabi_elements.DSequence import DSequence
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -26,16 +32,32 @@ class MainWindow(QMainWindow):
         self.ui.addASequenceButton.clicked.connect(self.addASequence)
         self.ui.logStateButton.clicked.connect(self.log)
         
+        # State information
+        self.power = 0
+        self.freq = 0
+        self.freqList = []
+        self.variedDurList = []
+        self.signals = []
+        self.dur= []
+        self.scales = []
+        self.varied = []
+        self.timeScaleDict = {"ns": 1,
+            "micro": 1e3,
+            "ms": 1e6, 
+            "s": 1e9}
+        self.freqScaleDict = {}
+        
     def searchPulseStreamer(self):
         print("search Pulstreamer")
         devices = findPulseStreamers()
+        ip = ""
         if devices !=[]:
             print("Detected Pulse Streamer 8/2: ")
             print(devices)
             print("------------------------------------------------------\n")
             #Connect to the first discovered Pulse Streamer
             ip = devices[0][0]
-            self.ui.IPLabel.setText(ip)
+            self.ui.PSaddress.setText(ip)
             print(ip)
         else:
             # if discovery failed try to connect by the default hostname
@@ -54,10 +76,53 @@ class MainWindow(QMainWindow):
     
     def searchRSGenerator(self):
         print("Search RS generator")
+        instr_list = RsSmbv.list_resources("?*")
+        print(instr_list)
+        if instr_list:
+            self.ui.RSaddress.setText(instr_list[0])
         pass
         
     def load(self):
         print("Load")
+        
+        # clear information of previous experiments
+        self.freqList.clear()
+        self.variedDurList.clear()
+        self.signals.clear()
+        self.dur.clear()
+        self.scales.clear()
+        self.varied.clear()
+        
+        # ODMR experiment
+        if self.ui.DTabWidget.currentIndex():
+            print("ODMR experiment")
+            exp = self.ui.odmrScrollArea.DHLayout
+            
+            # startFreq = self.ui.
+            # endFreq = 
+            step = self.ui.odmrEndFreqVal.value()
+            self.freqList = [int(i) for i in range()]
+            self.power = self.ui.odmrPowerVal.value()
+            
+            for i in range(1,exp.count()-1): 
+                o = exp.itemAt(i)
+                if isinstance(o, DSequence):    
+                    self.scales.append(str(o.scaleComboBox.currentText()))
+                    self.dur.append(int(o.duration.value()))
+                    
+        # Rabi experiment
+        else : 
+            print("Rabi experiment")
+            exp = self.ui.rabiScrollArea.DHLayout
+            
+            for i in range(8):
+                tmp = []
+                for j in range(1,exp.count()-1):
+                    o = exp.itemAt(j)
+                    if isinstance(o, DSequence):
+                        tmp.append(int(o.buttons[i].isChecked()))
+                self.signals.append(tmp)
+        
         pass
         
     def play(self):
@@ -79,8 +144,10 @@ class MainWindow(QMainWindow):
         pass
 
     def log(self):
-        print("Log Info")
+        print("----------Log Info----------")
+        
         pass
+    
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
