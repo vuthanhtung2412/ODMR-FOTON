@@ -5,11 +5,15 @@
 **Machines used:**
 + Pulse Streamer 8/2 : https://www.swabianinstruments.com/pulse-streamer-8-2/
 + Moku Pro : https://www.liquidinstruments.com/products/hardware-platforms/mokupro/
-+ Rohde & Schwarz SMB100A : 
-    + Pycharm plugin : https://rohde-schwarz.github.io/RsSmbv_PythonDocumentation/getting_started.html
-    + Python API : https://rsicpycharmplugin.readthedocs.io/en/latest/ 
++ Rohde & Schwarz SMB100A
+# Demos
 
-# How to use
+**First version**
+![](demos/demos_basic.png)
+
+**ODMR & Rabi version**
+![](demos/rabi_odmr.png)
+# Required set up
 
 **Install conda on Linux**
 
@@ -22,15 +26,12 @@
 
 1. Download the miniconda installer: https://docs.conda.io/projects/miniconda/en/latest/
 
-2. [Verify your installer hashes.](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html#hash-verification) (Optional)
+2. Add conda to env var with following code
 
-3. Double-click the .exe file and follow the instructions on the screen.
+        # execute the code below as administrator
+        setx PATH "%PATH%;C:\Users\<nom d'utilisateur>\miniconda3" /M
 
-4. Add conda to env var with following code
-
-        # à faire
-
-5. Test conda installation
+3. Test conda installation
 
         conda list
 
@@ -50,17 +51,55 @@
 
 **Run the program**
 
-    python main.py
+    # rabi odmr version 
+    python odmr_rabi_version/ODMRRabiMain.py
+    # or intial version
+    pyhon initial_version/main.py
 
-# Demos
+# Futher Optional set up
 
-**First version**
-![](demos/demos_basic.png)
+### VSCode extension
++ Gitlens
++ Jupyter
++ Prettier
++ Python
++ Python Environment managemen
 
-**ODMR & Rabi version**
+### VSCode setup
 
+[Change default terminal to cmd :](https://stackoverflow.com/questions/42729130/visual-studio-code-how-to-switch-from-powershell-exe-to-cmd-exe)
+1. Press Ctrl + Shift + P to show all commands.
+2. Select Terminal: Select Default Profile.
+3. Select Command Prompt (cmd.exe)
+### Create QtDesigner shortcut
+C:\Users\FOTON-Quantum-Lab\.conda\envs\<user-name>\Lib\site-packages\PySide6\designer.exe
+
+# Workflows 
+1. Design GUI with QtDesigner
+2. [Generate .py file from .ui file](https://stackoverflow.com/questions/69077280/converting-ui-file-into-py-using-pyside6)
+
+        pyside6-uic MainWindow.ui -o ui_mainwindow.py
+3. Rewrite .py fil, create helper classes so that the GUI is dynamic
+4. Connect fonctionali to UI elements
 # Explain file structure
 
++ **demos** : images to flex
++ **inial_version** : first version
++ **odmr_rabi_version** : the current version which connect to both generator and pulse streamer. It can do both ODMR and Rabi experiments.
++ [**qudi**](https://github.com/Ulm-IQO/qudi) : it is a potential repo for the developement of this app but it turns out to be merdique :)))
++ **RsSmbv_examples** : this dir is used to test Python API of the generator
++ **moku_examples** : this dir is used to test Python API of the moku
++ **pulseStreamer_examples** : this dir is used to test Python API of the pulseStreamer
+# Useful ressources
++ PySide 6 tutorial : https://www.pythonguis.com/pyside6-tutorial/
+
++ Moku Python API : https://apis.liquidinstruments.com/examples/python/
+
++ Pulse Streamer Python API : https://www.swabianinstruments.com/static/documentation/PulseStreamer/
+
++ Rohde & Schwarz SMB100A : 
+    + Pycharm plugin : https://rohde-schwarz.github.io/RsSmbv_PythonDocumentation/getting_started.html
+    + Python API : https://rsicpycharmplugin.readthedocs.io/en/latest/ 
 # Futures works:
 
 Error handling non found machine 
@@ -74,3 +113,7 @@ Moku integration
 Rohde & Schwarz SMB100A List mode (load list of frequency)
 
 Switch frequency when receive signal from the Pulse Streamer
+
+Save Pulse Sequence
+
+[QUDI](https://github.com/Ulm-IQO/qudi-core) [(doc)](https://ulm-iqo.github.io/qudi-core/s) might be interesting to look at, however i find it not very promising
