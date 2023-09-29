@@ -42,8 +42,8 @@
 
 **Pull project**
 
-    git clone https://github.com/vuthanhtung2412/ODMR-FOTON.git
-    cd ODMR-FOTON
+    git clone https://github.com/FOTON-Quantum-Lab/Rabi-ODMR.git
+    cd Rabi-ODMR
 
 **Set up conda env**
 
