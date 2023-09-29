@@ -84,9 +84,8 @@ C:\Users\FOTON-Quantum-Lab\.conda\envs\<user-name>\Lib\site-packages\PySide6\des
 # Explain file structure
 
 + **demos** : images to flex
-+ **inial_version** : first version
++ **initial_version** : first version
 + **odmr_rabi_version** : the current version which connect to both generator and pulse streamer. It can do both ODMR and Rabi experiments.
-+ [**qudi**](https://github.com/Ulm-IQO/qudi) : it is a potential repo for the developement of this app but it turns out to be merdique :)))
 + **RsSmbv_examples** : this dir is used to test Python API of the generator
 + **moku_examples** : this dir is used to test Python API of the moku
 + **pulseStreamer_examples** : this dir is used to test Python API of the pulseStreamer
