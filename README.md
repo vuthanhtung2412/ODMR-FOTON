@@ -72,7 +72,7 @@
 2. Select Terminal: Select Default Profile.
 3. Select Command Prompt (cmd.exe)
 ### Create QtDesigner shortcut
-C:\Users\FOTON-Quantum-Lab\.conda\envs\<user-name>\Lib\site-packages\PySide6\designer.exe
+C:\Users\user_name\ .conda\envs\env-name\Lib\site-packages\PySide6\designer.exe
 
 # Workflows 
 1. Design GUI with QtDesigner
