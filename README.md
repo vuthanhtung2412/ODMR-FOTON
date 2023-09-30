@@ -113,6 +113,8 @@ Rohde & Schwarz SMB100A List mode (load list of frequency)
 
 Switch frequency when receive signal from the Pulse Streamer
 
-Save Pulse Sequence
+Save Pulse Sequence (with a text file) + update UI when load file
+
+Notify when machine is disconnected
 
 [QUDI](https://github.com/Ulm-IQO/qudi-core) [(doc)](https://ulm-iqo.github.io/qudi-core/s) might be interesting to look at, however i find it not very promising

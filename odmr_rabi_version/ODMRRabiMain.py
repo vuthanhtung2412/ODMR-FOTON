@@ -47,6 +47,10 @@ class MainWindow(QMainWindow):
             "s": 1e9}
         self.freqScaleDict = {}
         
+        # machine 
+        self.pulser = None 
+        self.generator = None 
+        
     def searchPulseStreamer(self):
         print("search Pulstreamer")
         devices = findPulseStreamers()
@@ -98,17 +102,33 @@ class MainWindow(QMainWindow):
             print("ODMR experiment")
             exp = self.ui.odmrScrollArea.DHLayout
             
-            # startFreq = self.ui.
-            # endFreq = 
-            step = self.ui.odmrEndFreqVal.value()
-            self.freqList = [int(i) for i in range()]
+            # Load freq list
+            startFreq = self.ui.odmrStartFreqVal.value()
+            endFreq = self.ui.odmrEndFreqVal.value()
+            if endFreq < startFreq:
+                raise Exception("start frequency must be smaller than end frequency")
+            
+            nbStep = self.ui.odmrStepVal.value()
+            self.freqList = [startFreq + (endFreq - startFreq)/nbStep * i for i in range(nbStep+1)]
+            
+            # load power
             self.power = self.ui.odmrPowerVal.value()
             
+            # load scale and duration
             for i in range(1,exp.count()-1): 
                 o = exp.itemAt(i)
                 if isinstance(o, DSequence):    
                     self.scales.append(str(o.scaleComboBox.currentText()))
                     self.dur.append(int(o.duration.value()))
+            
+            # load signals
+            for i in range(8):
+                tmp = []
+                for j in range(1,exp.count()-1):
+                    o = exp.itemAt(j)
+                    if isinstance(o, DSequence):
+                        tmp.append(int(o.buttons[i].isChecked()))
+                self.signals.append(tmp)
                     
         # Rabi experiment
         else : 
