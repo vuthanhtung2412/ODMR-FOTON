@@ -45,7 +45,11 @@ class MainWindow(QMainWindow):
             "micro": 1e3,
             "ms": 1e6, 
             "s": 1e9}
-        self.freqScaleDict = {}
+        self.freqScaleDict = {"Hz" : 1,
+            "KHz" : 1e3,
+            "MHz": 1e6,
+            "GHz" : 1e9, 
+        }
         
         # machine 
         self.pulser = None 
@@ -90,6 +94,8 @@ class MainWindow(QMainWindow):
         print("Load")
         
         # clear information of previous experiments
+        self.power = 0
+        self.freq = 0
         self.freqList.clear()
         self.variedDurList.clear()
         self.signals.clear()
@@ -100,50 +106,105 @@ class MainWindow(QMainWindow):
         # ODMR experiment
         if self.ui.DTabWidget.currentIndex():
             print("ODMR experiment")
-            exp = self.ui.odmrScrollArea.DHLayout
-            
-            # Load freq list
-            startFreq = self.ui.odmrStartFreqVal.value()
-            endFreq = self.ui.odmrEndFreqVal.value()
-            if endFreq < startFreq:
-                raise Exception("start frequency must be smaller than end frequency")
-            
-            nbStep = self.ui.odmrStepVal.value()
-            self.freqList = [startFreq + (endFreq - startFreq)/nbStep * i for i in range(nbStep+1)]
-            
-            # load power
-            self.power = self.ui.odmrPowerVal.value()
-            
-            # load scale and duration
-            for i in range(1,exp.count()-1): 
-                o = exp.itemAt(i)
-                if isinstance(o, DSequence):    
-                    self.scales.append(str(o.scaleComboBox.currentText()))
-                    self.dur.append(int(o.duration.value()))
-            
-            # load signals
-            for i in range(8):
-                tmp = []
-                for j in range(1,exp.count()-1):
-                    o = exp.itemAt(j)
-                    if isinstance(o, DSequence):
-                        tmp.append(int(o.buttons[i].isChecked()))
-                self.signals.append(tmp)
-                    
+            self.odmrLoad()       
         # Rabi experiment
         else : 
             print("Rabi experiment")
-            exp = self.ui.rabiScrollArea.DHLayout
-            
-            for i in range(8):
-                tmp = []
-                for j in range(1,exp.count()-1):
-                    o = exp.itemAt(j)
-                    if isinstance(o, DSequence):
-                        tmp.append(int(o.buttons[i].isChecked()))
-                self.signals.append(tmp)
+            self.rabiLoad()
+    
+    def odmrLoad(self):
+        exp = self.ui.odmrScrollArea.DHLayout
+           
+        # Load freq list
+        startDur = self.ui.odmrStartFreqVal.value() * self.freqScaleDict[self.ui.odmrStartFreqScale.currentText()]
+        endDur = self.ui.odmrEndFreqVal.value() * self.freqScaleDict[self.ui.odmrEndFreqScale.currentText()]
+        if endDur < startDur:
+            raise Exception("start frequency must be smaller than end frequency")
         
-        pass
+        nbStep = self.ui.odmrStepVal.value()
+        self.freqList = [startDur + (endDur - startDur)/nbStep * i for i in range(nbStep+1)]
+        
+        # load power
+        self.power = self.ui.odmrPowerVal.value()
+        
+        # load scale and duration
+        for i in range(1,exp.count()-1): 
+            o = exp.itemAt(i)
+            if isinstance(o, DSequence):    
+                self.scales.append(str(o.scaleComboBox.currentText()))
+                self.dur.append(int(o.duration.value()))
+        
+        # load signals
+        for i in range(8):
+            tmp = []
+            for j in range(1,exp.count()-1):
+                o = exp.itemAt(j)
+                if isinstance(o, DSequence):
+                    tmp.append(int(o.buttons[i].isChecked()))
+            self.signals.append(tmp)
+        
+        # Load sequence into Pulse Streamer
+        seq = Sequence()
+        for c in range(8):
+            s = []
+            for i in range(len(self.dur)):
+                s.append((self.dur[i]*self.timeScaleDict[self.scales[i]], self.signals[c][i]))
+            seq.setDigital(c,s)
+        
+        seq.plot()
+        
+        # Load frequency list into generator 
+        
+        # Load Power 
+    
+    def rabiLoad(self):
+        exp = self.ui.rabiScrollArea.DHLayout
+
+        # Load time range 
+        startFreq = self.ui.rabiStartTimeVal.value() * self.timeScaleDict[self.ui.rabiStartTimeScale.currentText()]
+        endFreq = self.ui.rabiEndTimeVal.value() * self.timeScaleDict[self.ui.rabiEndTimeScale.currentText()]
+        if endFreq < startFreq:
+            raise Exception("start frequency must be smaller than end frequency")
+        
+        nbStep = self.ui.odmrStepVal.value()
+        self.variedDurList = [startFreq + (endFreq - startFreq)/nbStep * i for i in range(nbStep+1)]
+        
+        # Load freq, Power
+        self.freq = self.ui.RabiFreqVal.value() * self.freqScaleDict[self.ui.RabiFreqScale.currentText()]
+        self.power = self.ui.odmrPowerVal.value() 
+        
+        # Load signals 
+        for i in range(8):
+            tmp = []
+            for j in range(1,exp.count()-1):
+                o = exp.itemAt(j)
+                if isinstance(o, DSequence):
+                    tmp.append(int(o.buttons[i].isChecked()))
+            self.signals.append(tmp)
+        
+        for i in range(1,exp.count()-1): 
+            o = exp.itemAt(i)
+            if isinstance(o, DSequence):
+                self.varied.append(o.variCheckBox.isChecked())    
+                self.scales.append(str(o.scaleComboBox.currentText()))
+                self.dur.append(int(o.duration.value())) 
+        
+        # Load pulse sequence into Pulse Streamer
+        seq = Sequence()
+        for t in self.variedDurList:
+            for c in range(8):
+                s = []
+                for i in range(len(self.varied)):
+                    if self.varied[i]:
+                        s.append(t,self.signals[i][c])
+                    else:
+                        s.append((self.dur[i]*self.timeScaleDict[self.scales[i]], self.signals[c][i]))
+                seq.setDigital(c,s)
+                
+        seq.plot()
+        
+        # Load power and frequency
+        
         
     def play(self):
         print("Play")
@@ -165,9 +226,23 @@ class MainWindow(QMainWindow):
 
     def log(self):
         print("----------Log Info----------")
-        
+        if self.ui.DTabWidget.currentIndex():
+            print("this is a ODMR experiment")
+            print("Frequency List : %s" %(self.freqList))
+            print("Power : %s" %(self.power))
+            print("Signals : %s" %(self.signals))
+            print("Time Scales : %s" %(self.scales))
+            print("Duration : %s" %(self.dur))
+        else:
+            print("this is Rabi experiment")
+            print("Varying Duration List : %s" %(self.variedDurList))
+            print("Frequency : %s" %(self.freq))
+            print("Power : %s" %(self.power))
+            print("Signals : %s" %(self.signals))
+            print("Time Scales : %s" %(self.scales))
+            print("Duration : %s" %(self.dur))
         pass
-    
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
