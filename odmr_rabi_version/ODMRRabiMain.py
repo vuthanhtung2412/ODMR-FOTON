@@ -102,6 +102,7 @@ class MainWindow(QMainWindow):
         self.dur.clear()
         self.scales.clear()
         self.varied.clear()
+        self.seq = Sequence()
         
         # ODMR experiment
         if self.ui.DTabWidget.currentIndex():
@@ -144,14 +145,14 @@ class MainWindow(QMainWindow):
             self.signals.append(tmp)
         
         # Load sequence into Pulse Streamer
-        seq = Sequence()
+        self.seq = Sequence()
         for c in range(8):
             s = []
             for i in range(len(self.dur)):
                 s.append((self.dur[i]*self.timeScaleDict[self.scales[i]], self.signals[c][i]))
-            seq.setDigital(c,s)
+            self.seq.setDigital(c,s)
         
-        seq.plot()
+        self.seq.plot()
         
         # Load frequency list into generator 
         
@@ -190,7 +191,7 @@ class MainWindow(QMainWindow):
                 self.dur.append(int(o.duration.value())) 
         
         # Load pulse sequence into Pulse Streamer
-        seq = Sequence()
+        self.seq = Sequence()
         for t in self.variedDurList:
             for c in range(8):
                 s = []
@@ -199,15 +200,30 @@ class MainWindow(QMainWindow):
                         s.append(t,self.signals[i][c])
                     else:
                         s.append((self.dur[i]*self.timeScaleDict[self.scales[i]], self.signals[c][i]))
-                seq.setDigital(c,s)
+                self.seq.setDigital(c,s)
                 
-        seq.plot()
+        self.seq.plot()
         
         # Load power and frequency
         
         
     def play(self):
         print("Play")
+        
+        # Trigger Generators 
+        
+        # trigger pulser
+        start = TriggerStart.IMMEDIATE
+        rearm = TriggerRearm.MANUAL
+        n_runs = self.ui.repeatBox.value()
+        final = OutputState.ZERO()
+        
+        if self.pulser:
+            self.pulser.reset()
+            self.pulser.constant(OutputState.ZERO())
+            self.pulser.setTrigger(start=start, rearm=rearm)
+            self.pulser.stream(self.seq, n_runs, final)
+            
         pass
     
     def cancel(self):
