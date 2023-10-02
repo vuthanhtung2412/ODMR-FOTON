@@ -120,7 +120,7 @@ class MainWindow(QMainWindow):
         startDur = self.ui.odmrStartFreqVal.value() * self.freqScaleDict[self.ui.odmrStartFreqScale.currentText()]
         endDur = self.ui.odmrEndFreqVal.value() * self.freqScaleDict[self.ui.odmrEndFreqScale.currentText()]
         if endDur < startDur:
-            raise Exception("start frequency must be smaller than end frequency")
+            raise Exception("start duration must be smaller than end duration")
         
         nbStep = self.ui.odmrStepVal.value()
         self.freqList = [startDur + (endDur - startDur)/nbStep * i for i in range(nbStep+1)]
@@ -192,15 +192,15 @@ class MainWindow(QMainWindow):
         
         # Load pulse sequence into Pulse Streamer
         self.seq = Sequence()
-        for t in self.variedDurList:
-            for c in range(8):
-                s = []
+        for c in range(8):
+            s = []
+            for t in self.variedDurList: 
                 for i in range(len(self.varied)):
                     if self.varied[i]:
-                        s.append(t,self.signals[i][c])
+                        s.append((t,self.signals[c][i]))
                     else:
                         s.append((self.dur[i]*self.timeScaleDict[self.scales[i]], self.signals[c][i]))
-                self.seq.setDigital(c,s)
+            self.seq.setDigital(c,s)
                 
         self.seq.plot()
         
