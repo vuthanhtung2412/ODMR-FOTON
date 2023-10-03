@@ -211,6 +211,8 @@ class MainWindow(QMainWindow):
         print("Play")
         
         # Trigger Generators 
+        # Step or Extern step frequency mode (R&S SMB100A Operating Manual page 205)
+        # Effective "dwell time" and "setting time" (R&S SMB100A Operating Manual page 206)
         
         # trigger pulser
         start = TriggerStart.IMMEDIATE
